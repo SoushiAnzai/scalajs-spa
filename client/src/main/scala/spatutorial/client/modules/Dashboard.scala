@@ -19,26 +19,26 @@ object Dashboard {
 
   // create dummy data for the chart
   val cp = Chart.ChartProps(
-    "Test chart",
+    "Test チャート",
     Chart.BarChart,
     ChartData(
       Random.alphanumeric.map(_.toUpper.toString).distinct.take(10),
-      Seq(ChartDataset(Iterator.continually(Random.nextDouble() * 10).take(10).toSeq, "Data1"))
+      Seq(ChartDataset(Iterator.continually(Random.nextDouble() * 10).take(10).toSeq, "まどデータ"))
     )
   )
 
   // create the React component for Dashboard
-  private val component = ScalaComponent.builder[Props]("Dashboard")
+  private val component = ScalaComponent.builder[Props]("")
     // create and store the connect proxy in state for later use
     .initialStateFromProps(props => State(props.proxy.connect(m => m)))
     .renderPS { (_, props, state) =>
       <.div(
         // header, MessageOfTheDay and chart components
-        <.h2("Dashboard"),
+        <.h2("ダッシュボード"),
         state.motdWrapper(Motd(_)),
         Chart(cp),
         // create a link to the To Do view
-        <.div(props.router.link(TodoLoc)("Check your todos!"))
+        <.div(props.router.link(TodoLoc)("TODOを確認しよう!"))
       )
     }
     .build

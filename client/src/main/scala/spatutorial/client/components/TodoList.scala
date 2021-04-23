@@ -17,7 +17,7 @@ object TodoList {
     deleteItem: TodoItem => Callback
   )
 
-  private val TodoList = ScalaComponent.builder[TodoListProps]("TodoList")
+  private val TodoList = ScalaComponent.builder[TodoListProps]("TODOリスト")
     .render_P(p => {
       val style = bss.listGroup
       def renderItem(item: TodoItem) = {
@@ -31,8 +31,8 @@ object TodoList {
           <.input.checkbox(^.checked := item.completed, ^.onChange --> p.stateChange(item.copy(completed = !item.completed))),
           <.span(" "),
           if (item.completed) <.s(item.content) else <.span(item.content),
-          Button(Button.Props(p.editItem(item), addStyles = Seq(bss.pullRight, bss.buttonXS)), "Edit"),
-          Button(Button.Props(p.deleteItem(item), addStyles = Seq(bss.pullRight, bss.buttonXS)), "Delete")
+          Button(Button.Props(p.editItem(item), addStyles = Seq(bss.pullRight, bss.buttonXS)), "編集"),
+          Button(Button.Props(p.deleteItem(item), addStyles = Seq(bss.pullRight, bss.buttonXS)), "削除")
         )
       }
       <.ul(style.listGroup)(p.items toTagMod renderItem)

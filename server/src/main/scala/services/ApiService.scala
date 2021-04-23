@@ -1,19 +1,27 @@
 package services
 
-import java.util.{UUID, Date}
+import java.text.SimpleDateFormat
+import java.util.{Date, UUID}
 
 import spatutorial.shared._
 
 class ApiService extends Api {
   var todos = Seq(
-    TodoItem("41424344-4546-4748-494a-4b4c4d4e4f50", 0x61626364, "Wear shirt that says “Life”. Hand out lemons on street corner.", TodoLow, completed = false),
-    TodoItem("2", 0x61626364, "Make vanilla pudding. Put in mayo jar. Eat in public.", TodoNormal, completed = false),
-    TodoItem("3", 0x61626364, "Walk away slowly from an explosion without looking back.", TodoHigh, completed = false),
-    TodoItem("4", 0x61626364, "Sneeze in front of the pope. Get blessed.", TodoNormal, completed = true)
+    TodoItem("1", 0x61626364, "洗濯物しまう", TodoLow, completed = true),
+    TodoItem("2", 0x61626364, "カレー作る", TodoNormal, completed = false),
+    TodoItem("3", 0x61626364, "まどたんとモンブランたべる", TodoHigh, completed = false),
+    TodoItem("4", 0x61626364, "Terraformのキャッチアップをする", TodoNormal, completed = false)
   )
 
   override def welcomeMsg(name: String): String =
-    s"Welcome to SPA, $name! Time is now ${new Date}"
+    s"そうまるSPAにようこそ $name！ ただ今の時間は ${nowDateJapaneseFormat()} です！"
+
+  def nowDateJapaneseFormat(): String = {
+    // 現在時間日本語表示
+    val df: SimpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+    df.format(new Date)
+  }
+
 
   override def getAllTodos(): Seq[TodoItem] = {
     // provide some fake Todos

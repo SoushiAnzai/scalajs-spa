@@ -24,14 +24,15 @@ object MainMenu {
   private def buildTodoMenu(props: Props): VdomElement = {
     val todoCount = props.proxy().getOrElse(0)
     <.span(
-      <.span("Todo "),
+      <.span("TODO "),
       <.span(bss.labelOpt(CommonStyle.danger), bss.labelAsBadge, todoCount).when(todoCount > 0)
     )
   }
 
   private val menuItems = Seq(
-    MenuItem(1, _ => "Dashboard", Icon.dashboard, DashboardLoc),
-    MenuItem(2, buildTodoMenu, Icon.check, TodoLoc)
+    MenuItem(1, _ => "ダッシュボード", Icon.dashboard, DashboardLoc),
+    MenuItem(2, buildTodoMenu, Icon.check, TodoLoc),
+    MenuItem(3, _ => "まどまる", Icon.magic, DashboardLoc)
   )
 
   private class Backend($: BackendScope[Props, Unit]) {

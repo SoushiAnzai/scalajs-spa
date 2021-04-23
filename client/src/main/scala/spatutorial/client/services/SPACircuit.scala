@@ -70,7 +70,7 @@ class MotdHandler[M](modelRW: ModelRW[M, Pot[String]]) extends ActionHandler(mod
 
   override def handle = {
     case action: UpdateMotd =>
-      val updateF = action.effect(AjaxClient[Api].welcomeMsg("User X").call())(identity _)
+      val updateF = action.effect(AjaxClient[Api].welcomeMsg("まどたん").call())(identity _)
       action.handleWith(this, updateF)(PotAction.handler())
   }
 }

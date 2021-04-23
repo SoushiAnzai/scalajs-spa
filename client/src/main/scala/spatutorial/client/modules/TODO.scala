@@ -41,7 +41,7 @@ object Todo {
     }
 
     def render(p: Props, s: State) =
-      Panel(Panel.Props("What needs to be done"), <.div(
+      Panel(Panel.Props("TODOリスト"), <.div(
         p.proxy().renderFailed(ex => "Error loading"),
         p.proxy().renderPending(_ > 500, _ => "Loading..."),
         p.proxy().render(todos => TodoList(todos.items, item => p.proxy.dispatchCB(UpdateTodo(item)),
@@ -100,7 +100,7 @@ object TodoForm {
 
     def render(p: Props, s: State) = {
       log.debug(s"User is ${if (s.item.id == "") "adding" else "editing"} a todo or two")
-      val headerText = if (s.item.id == "") "Add new todo" else "Edit todo"
+      val headerText = if (s.item.id == "") "新しくTODOを作成" else "TODOを編集"
       Modal(Modal.Props(
         // header contains a cancel button (X)
         header = hide => <.span(<.button(^.tpe := "button", bss.close, ^.onClick --> hide, Icon.close), <.h4(headerText)),
@@ -109,16 +109,16 @@ object TodoForm {
         // this is called after the modal has been hidden (animation is completed)
         closed = formClosed(s, p)),
         <.div(bss.formGroup,
-          <.label(^.`for` := "description", "Description"),
+          <.label(^.`for` := "description", "内容"),
           <.input.text(bss.formControl, ^.id := "description", ^.value := s.item.content,
-            ^.placeholder := "write description", ^.onChange ==> updateDescription)),
+            ^.placeholder := "TODOを記入", ^.onChange ==> updateDescription)),
         <.div(bss.formGroup,
-          <.label(^.`for` := "priority", "Priority"),
+          <.label(^.`for` := "priority", "重要度"),
           // using defaultValue = "Normal" instead of option/selected due to React
           <.select(bss.formControl, ^.id := "priority", ^.value := s.item.priority.toString, ^.onChange ==> updatePriority,
-            <.option(^.value := TodoHigh.toString, "High"),
-            <.option(^.value := TodoNormal.toString, "Normal"),
-            <.option(^.value := TodoLow.toString, "Low")
+            <.option(^.value := TodoHigh.toString, "大事"),
+            <.option(^.value := TodoNormal.toString, "ふつう"),
+            <.option(^.value := TodoLow.toString, "そんなに")
           )
         )
       )
