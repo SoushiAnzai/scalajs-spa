@@ -4,6 +4,7 @@ import diode.ActionResult._
 import diode.RootModelRW
 import diode.data._
 import spatutorial.shared._
+import spatutorial.shared.model.{TodoHigh, TodoItem, TodoLow, TodoNormal}
 import utest._
 
 object SPACircuitTests extends TestSuite {

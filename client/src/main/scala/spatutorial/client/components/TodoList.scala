@@ -2,9 +2,10 @@ package spatutorial.client.components
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
-import spatutorial.client.components.Bootstrap.{CommonStyle, Button}
+import spatutorial.client.components.Bootstrap.{Button, CommonStyle}
 import spatutorial.shared._
 import scalacss.ScalaCssReact._
+import spatutorial.shared.model.{TodoHigh, TodoItem, TodoLow, TodoNormal}
 
 object TodoList {
   // shorthand for styles

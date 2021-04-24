@@ -10,8 +10,8 @@ import spatutorial.client.components._
 import spatutorial.client.logger._
 import spatutorial.client.services._
 import spatutorial.shared._
-
 import scalacss.ScalaCssReact._
+import spatutorial.shared.model.{TodoHigh, TodoItem, TodoLow, TodoNormal}
 
 object Todo {
 
